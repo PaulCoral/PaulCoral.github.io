@@ -8,5 +8,10 @@ Check out some of my [projects](https://github.com/PaulCoral?tab=repositories):
   - [Night-Light-Switch-Script-Gnome](https://paulcoral.github.io/Night-Light-Switch-Script-Gnome/) : A script that create a shortcut that switches Night-Light on/off on Gnome 3
   - [RPie-Simple-WebUI](https://github.com/PaulCoral/RetroPie-Simple-WebUI) : Simple Web Interface in PHP for RetroPie. Let the user add games to RetroPie through a Web Browser.
   - [Sort-Algo-Benchmark](https://github.com/PaulCoral/Sort-Algo-Benchmark) : A very simple tool to test sorting algorithm on random list
-  - [My-NeoVim-Config](https://github.com/PaulCoral/My-NeoVim-Config) : My neovim config, with some plugins and theme
+  
+  
+  
+  
+  
+  <!-- [My-NeoVim-Config](https://github.com/PaulCoral/My-NeoVim-Config) : My neovim config, with some plugins and theme -->
   
