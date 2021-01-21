@@ -2,6 +2,7 @@ theme: jekyll-theme-slate
 title: Paul Coral
 description: Bachelor Student in Computer Science @ EPFL, Switzerland
 
-github:
-  is_project_page: false
+site:
+  github:
+    is_project_page: false
   
