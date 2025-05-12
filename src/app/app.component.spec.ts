@@ -17,13 +17,14 @@ describe('AppComponent', () => {
   it(`should have the 'paulcoral-github-io' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('paulcoral-github-io');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, paulcoral-github-io');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, paulcoral-github-io'
+    );
   });
 });

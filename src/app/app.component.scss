@@ -1,0 +1,42 @@
+$accent-bg: #585858;
+$accent-color: white;
+
+
+header {
+  display: flex;
+  background-color: $accent-bg;
+  color: $accent-color;
+
+  .profile-img {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #00000066;
+    border-radius: 300px;
+  }
+
+  .info-wrapper{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 3rem;
+
+    .names {
+      font-size: 3rem;
+    }
+
+    .titles {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+main {
+  .project-section {
+    .project-cards {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+    }
+  }
+}
