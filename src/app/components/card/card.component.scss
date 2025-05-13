@@ -2,9 +2,8 @@
   display: block;
   border-radius: 1rem;
   box-shadow: #00000075 1px 1px 6px 0px;
-  width: 10rem;
   padding: 1rem;
-  transition: scale .5s ease;
+  transition: scale 0.5s ease;
 
   &:hover {
     scale: 1.025;

@@ -1,42 +1,83 @@
 $accent-bg: #585858;
 $accent-color: white;
 
-
-header {
+:host {
   display: flex;
-  background-color: $accent-bg;
+  flex-direction: column;
+  height: 100%;
   color: $accent-color;
 
-  .profile-img {
-    margin: 1rem;
-    padding: 1rem;
-    background-color: #00000066;
-    border-radius: 300px;
-  }
+  margin: 0;
+  overflow: hidden; /* Hide potential scrollbars caused by transform */
+  background: linear-gradient(-45deg, #1c7461, #098171, #40c2bb, #47928e);
+  background-size: 400% 400%; /* Make the gradient larger than the viewport */
+  animation: gradientShift 10s ease infinite; /* Apply the animation */
 
-  .info-wrapper{
-    flex: 1 0 auto;
+  header {
+    flex: 0 0 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 3rem;
+    background-color: rgb($accent-bg, 0.5);
+    box-shadow: #4343439a 0px 2px 11px 3px;
 
-    .names {
-      font-size: 3rem;
+    .profile-img {
+      margin: 1rem;
+      padding: 1rem;
+      background-color: #00000066;
+      border-radius: 300px;
     }
 
-    .titles {
-      font-size: 1.5rem;
+    .info-wrapper {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 3rem;
+
+      .names {
+        font-size: 3rem;
+      }
+
+      .titles {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .main-wrapper {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    main {
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      background: rgba(99, 99, 99, 0.658);
+      width: calc(100% - 1rem);
+      max-width: 500px;
+      box-shadow: #434343c0 0px 2px 11px 3px;
+      backdrop-filter: blur(10px);
+
+      .project-section {
+        .project-cards {
+          display: flex;
+          gap: 1rem;
+          padding: 1rem;
+        }
+      }
     }
   }
 }
 
-main {
-  .project-section {
-    .project-cards {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem;
-    }
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
