@@ -1,6 +1,4 @@
 ---
-import astroLogo from "../assets/astro.svg";
-import background from "../assets/background.svg";
 import { jobs } from "../data/jobs";
 import { technologies } from "../data/technologies";
 import CardTemplate from "./composites/CardTemplate.astro";
@@ -58,6 +56,7 @@ import CardTemplate from "./composites/CardTemplate.astro";
                             <CardTemplate className="p-1.5 h-12 aspect-square flex items-center justify-center">
                               <img
                                 class="max-w-full max-h-full"
+                                alt={`${t.title} logo`}
                                 src={t.imgUrl}
                               />
                             </CardTemplate>
@@ -92,7 +91,11 @@ import CardTemplate from "./composites/CardTemplate.astro";
                   >
                     {tech.title}
                   </h1>
-                  <img class="h-32" src={tech.imgUrl} alt="Scala logo" />
+                  <img
+                    class="h-32"
+                    src={tech.imgUrl}
+                    alt={`${tech.title} logo`}
+                  />
                   <div class="grow flex justify-center items-center">
                     <p class="text-center">{tech.description}</p>
                   </div>
