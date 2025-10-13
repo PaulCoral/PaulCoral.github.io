@@ -1,0 +1,116 @@
+---
+import astroLogo from "../assets/astro.svg";
+import background from "../assets/background.svg";
+import { jobs } from "../data/jobs";
+import { technologies } from "../data/technologies";
+import CardTemplate from "./composites/CardTemplate.astro";
+---
+
+<div id="container">
+  <header
+    class="flex flex-col items-center justify-center bg-gray-600 text-white px-4 py-16 border-b-8 border-accent mb-10"
+  >
+    <h1
+      class="font-bold text-8xl m-4 text-white text-shadow-2xs text-shadow-accent"
+    >
+      Paul Coral
+    </h1>
+    <p class="text-4xl">Fullstack Software Engineer</p>
+  </header>
+
+  <main class="flex flex-col items-center">
+    <div class="flex flex-col gap-16 max-w-4xl w-full p-2">
+      <section
+        class="flex flex-col gap-2 text-gray-700 text-lg italic text-center"
+      >
+        <p>
+          Dedicated Full Stack Software Engineer specializing in modern
+          application architecture and cross-browser compatibility.
+        </p>
+      </section>
+
+      <section>
+        <h2
+          class="text-accent border-b-4 border-accent text-2xl font-semibold mb-8"
+        >
+          Experience
+        </h2>
+        <div class="flex flex-col gap-6 px-4">
+          {
+            jobs.map((job) => {
+              const techs = job.relatedTech.map((k) => technologies[k]);
+              return (
+                <CardTemplate className="px-4 py-2">
+                  <div class="flex flex-wrap justify-between mb-2">
+                    <div class="flex flex-col">
+                      <h1 class="text-2xl text-accent font-semibold">
+                        {job.title}
+                      </h1>
+                      <p class="text-soft">{job.company}</p>
+                      <p class="text-soft">
+                        {job.from} - {job.to}
+                      </p>
+                    </div>
+                    <div class="flex gap-2">
+                      {techs.map((t) => {
+                        return (
+                          <a href={`#tech-${t.title}`}>
+                            <CardTemplate className="p-1.5 h-12 aspect-square flex items-center justify-center">
+                              <img
+                                class="max-w-full max-h-full"
+                                src={t.imgUrl}
+                              />
+                            </CardTemplate>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <p class="text-justify">{job.description}</p>
+                </CardTemplate>
+              );
+            })
+          }
+        </div>
+      </section>
+
+      <section>
+        <h2
+          class="text-accent border-b-4 border-accent text-2xl font-semibold mb-8"
+        >
+          Technologies
+        </h2>
+
+        <div class="flex flex-wrap justify-evenly gap-6 px-4">
+          {
+            Object.values(technologies).map((tech) => (
+              <CardTemplate className="w-xs">
+                <div class="flex flex-col items-center px-4 py-8 gap-6 h-full">
+                  <h1
+                    id={`tech-${tech.title}`}
+                    class="text-4xl text-accent font-semibold"
+                  >
+                    {tech.title}
+                  </h1>
+                  <img class="h-32" src={tech.imgUrl} alt="Scala logo" />
+                  <div class="grow flex justify-center items-center">
+                    <p class="text-center">{tech.description}</p>
+                  </div>
+                  <a href={tech.link}>Website</a>
+                </div>
+              </CardTemplate>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer
+    class="flex flex-col items-center justify-center bg-gray-600 text-white px-4 py-16 border-t-8 border-accent mt-10"
+  >
+    Paul Coral, 2025
+  </footer>
+</div>
+
+<style></style>

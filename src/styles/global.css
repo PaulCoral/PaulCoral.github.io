@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --my-color:#797979;
+  font-family: "ComfortaaRegular", Courier, monospace;
+}
+
+@theme {
+  --color-accent: #1491b8;
+  --color-soft: #797979; 
+}
+
+a {
+  @apply text-accent
+}
+
+a:hover {
+  @apply underline
+}
