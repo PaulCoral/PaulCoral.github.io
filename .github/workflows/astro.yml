@@ -1,0 +1,70 @@
+name: Build and Deploy Astro Site
+
+on:
+  # Trigger the workflow on pushes to the main branch
+  push:
+    branches: ["master"]
+
+  # Allow manual runs from the Actions tab
+  workflow_dispatch:
+
+# Grant necessary permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Enforces a single deployment run at a time
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm" # Cache pnpm modules for faster subsequent runs
+
+      - name: 📥 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ **Run Astro Build** (The explicit command you asked for)
+        run: pnpm run build
+
+      - name: 📁 Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: 📤 Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Astro outputs to the 'dist' directory by default
+          path: "./dist"
+
+    # The artifact output from the build job is used by the deploy job
+    outputs:
+      artifact_name: ${{ steps.upload-artifact.outputs.artifact_name }}
+
+  deploy:
+    # This job runs only after the 'build' job succeeds
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
