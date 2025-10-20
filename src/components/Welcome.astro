@@ -1,7 +1,11 @@
 ---
+import type { SupportedLocale } from "../assets/locale";
 import { jobs } from "../data/jobs";
 import { technologies } from "../data/technologies";
+import { useTranslations } from "../utils/i18n";
 import CardTemplate from "./composites/CardTemplate.astro";
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="container">
@@ -13,7 +17,7 @@ import CardTemplate from "./composites/CardTemplate.astro";
     >
       Paul Coral
     </h1>
-    <p class="text-4xl">Fullstack Software Engineer</p>
+    <p class="text-4xl">{t("home.header-subtitle")}</p>
   </header>
 
   <main class="flex flex-col items-center">
@@ -22,8 +26,7 @@ import CardTemplate from "./composites/CardTemplate.astro";
         class="flex flex-col gap-2 text-gray-700 text-lg italic text-center"
       >
         <p>
-          Dedicated Full Stack Software Engineer specializing in modern
-          application architecture and cross-browser compatibility.
+          {t("home.summary")}
         </p>
       </section>
 

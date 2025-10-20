@@ -1,11 +1,8 @@
-// export function getLangFromUrl(url: URL) {
-//   const [, lang] = url.pathname.split('/');
-//   if (lang in ui) return lang as keyof typeof ui;
-//   return defaultLang;
-// }
+import { DEFAULT_LOCALE, isSupportedLocale, LOCALE } from "../assets/locale";
 
-// export function useTranslations(lang: keyof typeof ui) {
-//   return function t(key: keyof typeof ui[typeof defaultLang]) {
-//     return ui[lang][key] || ui[defaultLang][key];
-//   }
-// }
+export function useTranslations(lang: string | undefined) {
+  const supportedLang = isSupportedLocale(lang) ? lang : DEFAULT_LOCALE;
+  return function t(key: keyof typeof LOCALE) {
+    return LOCALE[key][supportedLang];
+  };
+}
