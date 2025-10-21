@@ -1,32 +1,21 @@
 ---
-import type { SupportedLocale } from "../assets/locale";
 import { jobs } from "../data/jobs";
 import { technologies } from "../data/technologies";
 import { useTranslations } from "../utils/i18n";
+import Translation from "./atom/Translation.astro";
 import CardTemplate from "./composites/CardTemplate.astro";
 
 const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="container">
-  <header
-    class="flex flex-col items-center justify-center bg-gray-600 text-white px-4 py-16 border-b-8 border-accent mb-10"
-  >
-    <h1
-      class="font-bold text-8xl m-4 text-white text-shadow-2xs text-shadow-accent"
-    >
-      Paul Coral
-    </h1>
-    <p class="text-4xl">{t("home.header-subtitle")}</p>
-  </header>
-
   <main class="flex flex-col items-center">
     <div class="flex flex-col gap-16 max-w-4xl w-full p-2">
       <section
         class="flex flex-col gap-2 text-gray-700 text-lg italic text-center"
       >
         <p>
-          {t("home.summary")}
+          <Translation key="home.summary" />
         </p>
       </section>
 
@@ -34,7 +23,7 @@ const t = useTranslations(Astro.currentLocale);
         <h2
           class="text-accent border-b-4 border-accent text-2xl font-semibold mb-8"
         >
-          Experience
+          {t("home.work-experience")}
         </h2>
         <div class="flex flex-col gap-6 px-4">
           {
@@ -45,7 +34,7 @@ const t = useTranslations(Astro.currentLocale);
                   <div class="flex flex-wrap justify-between mb-2">
                     <div class="flex flex-col">
                       <h1 class="text-2xl text-accent font-semibold">
-                        {job.title}
+                        {t(job.title)}
                       </h1>
                       <p class="text-soft">{job.company}</p>
                       <p class="text-soft">
@@ -68,7 +57,7 @@ const t = useTranslations(Astro.currentLocale);
                       })}
                     </div>
                   </div>
-                  <p class="text-justify">{job.description}</p>
+                  <p class="text-justify">{t(job.description)}</p>
                 </CardTemplate>
               );
             })
@@ -80,7 +69,7 @@ const t = useTranslations(Astro.currentLocale);
         <h2
           class="text-accent border-b-4 border-accent text-2xl font-semibold mb-8"
         >
-          Technologies
+          {t("home.technologies")}
         </h2>
 
         <div class="flex flex-wrap justify-evenly gap-6 px-4">
@@ -100,9 +89,9 @@ const t = useTranslations(Astro.currentLocale);
                     alt={`${tech.title} logo`}
                   />
                   <div class="grow flex justify-center items-center">
-                    <p class="text-center">{tech.description}</p>
+                    <p class="text-center">{t(tech.description)}</p>
                   </div>
-                  <a href={tech.link}>Website</a>
+                  <a href={tech.link}>{t("common.website")}</a>
                 </div>
               </CardTemplate>
             ))
@@ -111,12 +100,6 @@ const t = useTranslations(Astro.currentLocale);
       </section>
     </div>
   </main>
-
-  <footer
-    class="flex flex-col items-center justify-center bg-gray-600 text-white px-4 py-16 border-t-8 border-accent mt-10"
-  >
-    Paul Coral, 2025
-  </footer>
 </div>
 
 <style></style>

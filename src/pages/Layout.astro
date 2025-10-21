@@ -1,5 +1,9 @@
 ---
+import LanguagePicker from "../components/atom/LanguagePicker.astro";
 import "../styles/global.css";
+import { useTranslations } from "../utils/i18n";
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <!doctype html>
@@ -28,7 +32,25 @@ import "../styles/global.css";
     <title>Paul Coral - Fullstack Software Engineer</title>
   </head>
   <body>
+    <header class="bg-gray-600 text-white border-b-8 border-accent mb-10">
+      <div class="w-full flex justify-end p-4">
+        <LanguagePicker />
+      </div>
+      <div class="flex flex-col items-center justify-center px-4 py-16">
+        <h1
+          class="font-bold text-8xl m-4 text-white text-shadow-2xs text-shadow-accent"
+        >
+          Paul Coral
+        </h1>
+        <p class="text-4xl">{t("home.header-subtitle")}</p>
+      </div>
+    </header>
     <slot />
+    <footer
+      class="flex flex-col items-center justify-center bg-gray-600 text-white px-4 py-16 border-t-8 border-accent mt-10"
+    >
+      Paul Coral, 2025
+    </footer>
   </body>
 </html>
 

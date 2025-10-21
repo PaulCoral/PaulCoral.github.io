@@ -1,0 +1,27 @@
+---
+import {
+  isSupportedLocale,
+  SUPPORT_LOCALE_OPTIONS,
+  SUPPORTED_LOCALE,
+} from "../../assets/locale";
+
+SUPPORT_LOCALE_OPTIONS;
+
+const options = Object.values(SUPPORT_LOCALE_OPTIONS);
+const currentLocale = isSupportedLocale(Astro.currentLocale)
+  ? SUPPORT_LOCALE_OPTIONS[Astro.currentLocale]
+  : "--";
+---
+
+<div class="wrapper relative w-24">
+  {currentLocale} 🞃
+  <div class="menu absolute hidden w-24">
+    {options.map((opt) => <div>{opt}</div>)}
+  </div>
+</div>
+
+<style>
+  .wrapper:hover .menu {
+    display: block;
+  }
+</style>

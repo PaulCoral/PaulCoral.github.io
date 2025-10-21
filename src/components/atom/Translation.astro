@@ -1,0 +1,18 @@
+---
+import type { LocaleKeys, SupportedLocale } from "../../assets/locale";
+import { useTranslations } from "../../utils/i18n";
+import * as marked from "marked";
+
+interface Props {
+  key: LocaleKeys;
+}
+
+const { key } = Astro.props;
+
+const t = useTranslations(Astro.currentLocale);
+function mt(key: LocaleKeys) {
+  return marked.parse(t(key));
+}
+---
+
+<span set:html={mt(key)} />
