@@ -45,7 +45,10 @@ const t = useTranslations(Astro.currentLocale);
                       {techs.map((t) => {
                         return (
                           <a href={`#tech-${t.title}`}>
-                            <CardTemplate className="p-1.5 h-12 aspect-square flex items-center justify-center">
+                            <CardTemplate
+                              className="p-1.5 h-12 aspect-square flex items-center justify-center"
+                              hoverHightlight
+                            >
                               <img
                                 class="max-w-full max-h-full"
                                 alt={`${t.title} logo`}
@@ -75,12 +78,12 @@ const t = useTranslations(Astro.currentLocale);
         <div class="flex flex-wrap justify-evenly gap-6 px-4">
           {
             Object.values(technologies).map((tech) => (
-              <CardTemplate className="w-xs">
+              <CardTemplate
+                id={`tech-${tech.title}`}
+                className="w-xs scroll-mt-2"
+              >
                 <div class="flex flex-col items-center px-4 py-8 gap-6 h-full">
-                  <h1
-                    id={`tech-${tech.title}`}
-                    class="text-4xl text-accent font-semibold"
-                  >
+                  <h1 class="text-4xl text-accent font-semibold">
                     {tech.title}
                   </h1>
                   <img

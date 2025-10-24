@@ -1,22 +1,35 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 import {
   isSupportedLocale,
   SUPPORT_LOCALE_OPTIONS,
   SUPPORTED_LOCALE,
 } from "../../assets/locale";
+import CardTemplate from "../composites/CardTemplate.astro";
 
-SUPPORT_LOCALE_OPTIONS;
+const currentLocale = Astro.currentLocale;
 
-const options = Object.values(SUPPORT_LOCALE_OPTIONS);
-const currentLocale = isSupportedLocale(Astro.currentLocale)
-  ? SUPPORT_LOCALE_OPTIONS[Astro.currentLocale]
-  : "--";
+const currentLocaleText = isSupportedLocale(currentLocale)
+  ? SUPPORT_LOCALE_OPTIONS[currentLocale]
+  : (currentLocale ?? "?");
 ---
 
-<div class="wrapper relative w-24">
-  {currentLocale} 🞃
+<div class="wrapper relative w-24 min-w-fit">
+  {currentLocaleText} 🞃
   <div class="menu absolute hidden w-24">
-    {options.map((opt) => <div>{opt}</div>)}
+    <CardTemplate className="bg-white text-black p-1">
+      {
+        SUPPORTED_LOCALE.map((opt) =>
+          opt === currentLocale ? (
+            <div class="font-semibold underline">{currentLocaleText}</div>
+          ) : (
+            <a href={getRelativeLocaleUrl(opt)}>
+              {SUPPORT_LOCALE_OPTIONS[opt]}
+            </a>
+          )
+        )
+      }
+    </CardTemplate>
   </div>
 </div>
 

@@ -2,7 +2,10 @@
 
 :root {
   --my-color:#797979;
-  font-family: "ComfortaaRegular", Courier, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @theme {

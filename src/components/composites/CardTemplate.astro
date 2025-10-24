@@ -1,22 +1,42 @@
 ---
 interface Props {
+  id?: string;
   className?: string;
+  hoverHightlight?: boolean;
 }
 
-const { className } = Astro.props;
+const { id, className, hoverHightlight } = Astro.props;
+
+const hoverHighlightClass = hoverHightlight ? "hoverHightlight" : "";
 ---
 
-<div class={`wrapper rounded ${className ?? ""}`}>
+<div
+  id={id}
+  class={`wrapper ${hoverHighlightClass} rounded ${className ?? ""}`}
+>
   <slot />
 </div>
 
 <style>
   .wrapper {
     box-shadow: 1px 1px 4px 1px var(--color-soft);
-    transition: scale 0.5s;
+    transition: box-shadow 0.4s ease;
   }
 
-  .wrapper:hover {
+  .wrapper.hoverHightlight:hover {
+    box-shadow: 1px 1px 4px 2px var(--color-accent);
+  }
+
+  :target {
+    box-shadow: 1px 1px 4px 2px var(--color-accent);
+  }
+
+  .wrapper.zoom {
+    transition: scale 1s;
+    transform: translateZ(0);
+  }
+
+  .zoom:hover {
     scale: 101%;
   }
 </style>
