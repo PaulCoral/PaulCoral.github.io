@@ -4,8 +4,6 @@ import { technologies } from "../data/technologies";
 import { useTranslations } from "../utils/i18n";
 import Translation from "./atom/Translation.astro";
 import CardTemplate from "./composites/CardTemplate.astro";
-
-const t = useTranslations(Astro.currentLocale);
 ---
 
 <div id="container">
@@ -23,7 +21,7 @@ const t = useTranslations(Astro.currentLocale);
         <h2
           class="text-accent border-b-4 border-accent text-2xl font-semibold mb-8"
         >
-          {t("home.work-experience")}
+          <Translation key="home.work-experience" />
         </h2>
         <div class="flex flex-col gap-6 px-4">
           {
@@ -34,7 +32,7 @@ const t = useTranslations(Astro.currentLocale);
                   <div class="flex flex-wrap justify-between mb-2">
                     <div class="flex flex-col">
                       <h1 class="text-2xl text-accent font-semibold">
-                        {t(job.title)}
+                        <Translation key={job.title} />
                       </h1>
                       <p class="text-soft">{job.company}</p>
                       <p class="text-soft">
@@ -49,18 +47,24 @@ const t = useTranslations(Astro.currentLocale);
                               className="p-1.5 h-12 aspect-square flex items-center justify-center"
                               hoverHightlight
                             >
-                              <img
-                                class="max-w-full max-h-full"
-                                alt={`${t.title} logo`}
-                                src={t.imgUrl}
-                              />
+                              {typeof t.img === "string" ? (
+                                <img
+                                  class="max-w-full max-h-full"
+                                  alt={`${t.title} logo`}
+                                  src={t.img}
+                                />
+                              ) : (
+                                <t.img height="100%" width={null} />
+                              )}
                             </CardTemplate>
                           </a>
                         );
                       })}
                     </div>
                   </div>
-                  <p class="text-justify">{t(job.description)}</p>
+                  <p class="text-justify">
+                    <Translation key={job.description} />
+                  </p>
                 </CardTemplate>
               );
             })
@@ -72,7 +76,7 @@ const t = useTranslations(Astro.currentLocale);
         <h2
           class="text-accent border-b-4 border-accent text-2xl font-semibold mb-8"
         >
-          {t("home.technologies")}
+          <Translation key={"home.technologies"} />
         </h2>
 
         <div class="flex flex-wrap justify-evenly gap-6 px-4">
@@ -86,15 +90,25 @@ const t = useTranslations(Astro.currentLocale);
                   <h1 class="text-4xl text-accent font-semibold">
                     {tech.title}
                   </h1>
-                  <img
-                    class="h-32"
-                    src={tech.imgUrl}
-                    alt={`${tech.title} logo`}
-                  />
-                  <div class="grow flex justify-center items-center">
-                    <p class="text-center">{t(tech.description)}</p>
+                  <div class="max-h-32 h-32">
+                    {typeof tech.img === "string" ? (
+                      <img
+                        class="h-full"
+                        src={tech.img}
+                        alt={`${tech.title} logo`}
+                      />
+                    ) : (
+                      <tech.img height="100%" width={null} />
+                    )}
                   </div>
-                  <a href={tech.link}>{t("common.website")}</a>
+                  <div class="grow flex justify-center items-center">
+                    <div class="text-center">
+                      <Translation key={tech.description} />
+                    </div>
+                  </div>
+                  <a href={tech.link}>
+                    <Translation key={"common.website"} />
+                  </a>
                 </div>
               </CardTemplate>
             ))

@@ -25,7 +25,7 @@ export const jobs = [
     to: "11.2025",
     company: "OneDoc SA, 1202 Geneva",
     description: "home.jobs.onedoc.description",
-    relatedTech: ["scala", "angular", "typescript"],
+    relatedTech: ["scala", "angular", "typescript", "postgreSQL"],
   },
   {
     title: "home.jobs.engineer-full-stack",
